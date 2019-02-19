@@ -13,7 +13,9 @@ class Tracks extends Component {
 
         if(!this.state.playing){
             audio.play();
-            this.setState({playing:true,audio,playingPreviewUrl:previewUrl});
+            this.setState({playing:true,
+                 audio,
+                playingPreviewUrl:previewUrl});
         }
         else{
           this.state.audio.pause();
@@ -29,6 +31,13 @@ class Tracks extends Component {
     }
 
     trackIcon = track =>{
+ 
+           if(!track.preview_url){
+
+              return <span>N/A</span>
+           }
+
+
         if(
         this.state.playing &&
         this.state.playingPreviewUrl === track.preview_url

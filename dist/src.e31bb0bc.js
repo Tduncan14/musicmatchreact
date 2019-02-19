@@ -24144,6 +24144,10 @@ function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "trackIcon", function (track) {
+      if (!track.preview_url) {
+        return _react.default.createElement("span", null, "N/A");
+      }
+
       if (_this.state.playing && _this.state.playingPreviewUrl === track.preview_url) {
         return _react.default.createElement("span", null, "| |");
       } else {
