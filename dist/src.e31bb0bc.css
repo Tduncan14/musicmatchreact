@@ -15,3 +15,26 @@ body{
     padding:2.5%;
     font-family:'EconomicaBold';
 }
+
+.track{
+    width:250px;
+    height:250px;
+    position:relative;
+    display:inline-block;
+    margin:20px;
+    cursor:pointer
+}
+
+.track-image{
+    width:250px;
+    height:250px;
+}
+
+.track-text{
+    background-color:black;
+    color:white;
+    width:250px;
+    bottom:0px;
+    padding:5px;
+    position: absolute;
+}

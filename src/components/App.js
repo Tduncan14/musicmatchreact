@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import Artist from './Artist';
 import Tracks from './Tracks';
+import Search from  './Search';
 
 
 const API_ADDRESS ='https://spotify-api-wrapper.appspot.com';
@@ -8,22 +9,19 @@ const API_ADDRESS ='https://spotify-api-wrapper.appspot.com';
 
 class App extends Component {
 
-    state ={ artistQuery:'',
+    state ={
              artist:null,
-             tracks:[]};
-
-
-    updateArtistQuery = event =>{
-        
-        this.setState({
-            artistQuery:event.target.value,
-        });
-    }
+             tracks:[]
+            };
 
     
-    searchArtist = () =>{
+   componentDidMount(){
+       this.searchArtist('Michael Jackson')
+   }
 
-        fetch(`${API_ADDRESS}/artist/${this.state.artistQuery}`)
+    searchArtist = artistQuery =>{
+
+        fetch(`${API_ADDRESS}/artist/${artistQuery}`)
         .then(response =>response.json())
         .then(json =>{
             if(json.artists.total > 0){
@@ -39,22 +37,12 @@ class App extends Component {
         .catch(error => alert(`error from the artist search ${error}`));
     } 
 
-    handleKeyPress = event => {
-        if(event.key === 'Enter'){
-            this.searchArtist();
-        }
-    }
-
     render(){
         console.log('this.state', this.state);
         return(
             <div>
-                <h2>Music Player,Just snippets</h2>
-                <input
-                 onChange={this.updateArtistQuery}
-                 onKeyPress={this.handleKeyPress}
-                 placeholder ='Search for an artist' />
-                <button onClick ={this.searchArtist}>Search </button>
+                <h2> Flicker Music Player</h2>
+                <Search searchArtist ={this.searchArtist} />
                 <Artist artist ={this.state.artist} />
                 <Tracks tracks ={this.state.tracks} />
             </div>
